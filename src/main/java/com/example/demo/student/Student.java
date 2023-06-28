@@ -30,18 +30,18 @@ public class Student {
     }
 
     public Student(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+        setId(id);
+        setName(name);
+        setEmail(email);
+        setDob(dob);
     }
 
     public Student(String name,
                    String email,
                    LocalDate dob) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+        setName(name);
+        setEmail(email);
+        setDob(dob);
     }
 
     public Long getId() {
@@ -57,14 +57,21 @@ public class Student {
     }
 
     public void setName(String name) {
+        if (name == null || name.length() == 0) {
+            throw new IllegalStateException("Invalid name");
+        }
         this.name = name;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+        if (!email.contains("@") || !email.contains(".")) {
+            throw new IllegalStateException("Invalid email");
+        }
         this.email = email;
     }
 
